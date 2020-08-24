@@ -42,6 +42,10 @@ CaseService.filter = async (FilterCase)=>{
             query = query + ' where uuidAssignedUser = null '
             where = where+1
         }
+        if(elemet.user == null){
+            query = query + ' where uuidAssignedUser = null '
+            where = where+1
+        }
 
         if(elemet.desisted == 1){
             query = query + ' where desisted = 1 '
