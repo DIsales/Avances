@@ -11,6 +11,13 @@ handCase.create = async (req, res) => {
     DataCase = req.body;
 
     let result = await CaseService.create(DataCase)
+const Case = require('../models/ncase.model')
+
+const handCase = {}
+
+handCase.create = async (req, res) => {
+
+    let result = await CaseService.create(req.body)
 
     if (result == errors.ErrDuplicateRegistry) {
         return res
@@ -62,5 +69,32 @@ handCase.filter = async(req, res)=>{
         .status(http.StatusOK)
         .json(new Response(true, 'Consulta exitosa')) */
 }
+
+///////////
+    try {
+        let result = await CaseService.create(req.body)
+        return res.status(http.StatusOK)
+            .json(
+                {
+                    ok: true,
+                    message: "funciona",
+                    data: result
+                })
+    } catch (error) {
+
+        if (res == errors.UnhandledPromiseRejectionWarning) {
+            return res
+            .status(http.StatusBadRequest)
+            .json(new Response(false, "Un tipo de dato enviado es incorrecto"))
+        }
+
+        return res
+            .status(http.StatusInternalServerError)
+            .json({
+                error: "Internal Server Error"
+            })
+    }
+}
+
 
 module.exports = handCase;

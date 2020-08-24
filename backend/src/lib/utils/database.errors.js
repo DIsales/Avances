@@ -4,5 +4,9 @@ module.exports = errors = {
     ConnectionRefused: 'ECONNREFUSED',
 
     ErrDuplicateRegistry: 1062,
+<<<<<<< HEAD
 
+=======
+    // UnhandledPromiseRejectionWarning:
+>>>>>>> e5079fd768dfcc5ac1634876470bdee6e6142195
 }

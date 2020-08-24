@@ -4,6 +4,15 @@ const Case = require('../models/case.model');
 const storageCase = {}
 
 storageCase.create = (dataCase) => {
+const bcrypt = require('bcryptjs');
+const pool = require('../lib/database/database');
+const Case = require('../models/ncase.model');
+
+
+
+const storageCase = {}
+
+storageCase.create = async (dataCase) => {
     let cases = new Case()
     cases = dataCase;
 
@@ -13,6 +22,7 @@ storageCase.create = (dataCase) => {
             cases.creationDate, cases.uuidStage, cases.reasonForConsultation, cases.desisted
         ], (err, results, fields) => {
             if (err) {
+<<<<<<< HEAD
                 reject(err.errno)
             }
             resolve(results)
@@ -31,6 +41,11 @@ storageCase.filter = (query) => {
             if(results == undefined || results.length == 0 ){
                 reject(404)
             }
+=======
+                reject(err)
+            }
+            console.log(results)
+>>>>>>> e5079fd768dfcc5ac1634876470bdee6e6142195
             resolve(results)
         })
     })
