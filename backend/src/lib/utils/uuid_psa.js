@@ -7,7 +7,7 @@ const UUID20 = {}
 
 UUID20.call = async () => {
     return new Promise((resolve, reject) => {
-        pool.query('SELECT COUNT(*) AS COUNT FROM pas_person', (err, results, fields) => {
+        pool.query('SELECT COUNT(*) AS COUNT FROM pac_case', (err, results, fields) => {
             if (err) {
                 reject(err)
             };
