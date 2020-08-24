@@ -1,0 +1,5 @@
+@host = http://localhost:3000/
+
+
+###
+GET {{host}}case/filter?assigned=1&desisted=1&order=asc

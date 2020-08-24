@@ -6,6 +6,7 @@ const Person = require('../models/person.model')
 
 const handPerson = {}
 
+
 handPerson.create = async (req, res) => {
     let DataPerson = new Person()
     DataPerson = req.body;
@@ -22,5 +23,6 @@ handPerson.create = async (req, res) => {
         .status(http.StatusCreated)
         .json(new Response(true, 'El registro ha sido creado satisfactoriamente'))
 }
+
 
 module.exports = handPerson;
