@@ -23,10 +23,44 @@ handCase.create = async (req, res) => {
         .json(new Response(true, 'El registro ha sido creado satisfactoriamente'))
 }
 
-handCase.filter = async(req, res)=>{
-    let FilterCase = new Case()
-    FilterCase
 
+
+handCase.filter = async(req, res)=>{
+   
+    try{
+        
+        let result = await CaseService.filter(req.query)
+        return res
+            .status(http.StatusOK)
+            .json({
+                ok: true,
+                message: "Consulta exitosa",
+                data: result
+        })
+
+    }catch(error){
+        if (error == http.StatusNotFound) {
+            return res
+                .status(http.StatusNotFound)
+                .json(new Response(false, "Registros no encontrados"))
+        }
+        return res
+        .status(http.StatusInternalServerError)
+        .json({
+            error: "Internal Server Error"
+        })
+    }
+    
+
+    /* if (result == errors.ErrNotFound) {
+        return res
+            .status(http.StatusNotFound)
+            .json(new Response(false, "Registros no encontrados"))
+    }
+
+    return res
+        .status(http.StatusOK)
+        .json(new Response(true, 'Consulta exitosa')) */
 }
 
-module.exports = handPerson;
+module.exports = handCase;

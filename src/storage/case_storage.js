@@ -20,14 +20,16 @@ storageCase.create = (dataCase) => {
     })
 }
 
-storageCase.filter = (dataCase) => {
-    let cases = new Case()
-    cases = dataCase;
+storageCase.filter = (query) => {
+    
 
     return new Promise((resolve, reject) => {
-        pool.query('SELECT * FROM PAC_case', (err, results, fields) => {
+        pool.query(query, (err, results, fields) => {
             if (err) {
                 reject(err.errno)
+            }
+            if(results == undefined || results.length == 0 ){
+                reject(404)
             }
             resolve(results)
         })
